@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
 
-function App() {
+import Header from './components/header/Header';
+import Main from './components/main/Main';
+import Footer from './components/footer/Footer';
+import { setTodoCreator } from './redux/todosReducer';
+
+function App(props) {
+  function initStore() {
+    if(props.todos.length) {
+      return;
+    }
+
+    fetch('http://localhost:3001/todos')
+    .then(response => response.json())
+    .then(todos => {
+      console.log(todos);
+      todos.forEach(todo => {
+        props.setTodoCreator(todo);
+      });
+    });
+  }
+
+  initStore();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <Header/>
       </header>
-    </div>
+
+      <main>
+        <Main/>
+      </main>
+
+      <footer>
+        <Footer/>
+      </footer>
+    </>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    todos: state.todosReducer.todos
+  }
+}
+
+export default connect(mapStateToProps, { setTodoCreator })(App);
