@@ -1,11 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function Main() {
+function Main(props) {
+  function renderTodosList() {
+    return props.todos.map((todo, i) => {
+      return (
+        <ul key={ i }>
+          <li>
+            <input type="checkbox"/>
+            <span>{ todo.title }</span>
+          </li>
+        </ul>
+      );
+    });
+  }
+
   return (
     <>
-       main
+      { props.todos.length && renderTodosList() }
     </>
   );
 }
 
-export default Main;
+const mapStateToProps = state => {
+  return {
+    todos: state.todosReducer.todos
+  }
+}
+
+export default connect(mapStateToProps, {})(Main);

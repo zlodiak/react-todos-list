@@ -3,24 +3,20 @@ import { connect } from 'react-redux';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
-import { setTodoCreator } from './redux/todosReducer';
+import { addTodoCreator } from './redux/todosReducer';
+import { getTodos } from './API';
 
 function App(props) {
   function initStore() {
-    if(props.todos.length) {
-      return;
-    }
-
-    fetch('http://localhost:3001/todos')
-    .then(response => response.json())
-    .then(todos => {
-      console.log(todos);
-      todos.forEach(todo => {
-        props.setTodoCreator(todo);
+    if(props.todos.length) { return; }
+    getTodos
+      .then(todos => {
+        console.log(todos);
+        todos.forEach(todo => {
+          props.addTodoCreator(todo);
+        });
       });
-    });
   }
-
   initStore();
 
   return (
@@ -46,4 +42,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { setTodoCreator })(App);
+export default connect(mapStateToProps, { addTodoCreator })(App);

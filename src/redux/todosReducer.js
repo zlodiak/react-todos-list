@@ -13,7 +13,7 @@ const todosReducer = function todosReducer(state = { todos: [] }, action) {
     return state;
 }
 
-export const setTodoCreator = todo => {
+export const addTodoCreator = todo => {
     return { type: 'ADD_TODO', payload: todo }
 }
 

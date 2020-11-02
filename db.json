@@ -3,7 +3,6 @@
         {
             "id": 0,
             "title": "first todo1",
-            "body": "11Строка очень похожа на литерал одноимённого типа данных в языке Javascript.",
             "isCompleted": false,
             "createDate": 1604348731,
             "color": 0
@@ -11,7 +10,6 @@
         {
             "id": 1,
             "title": "first todo2",
-            "body": "22Строка очень похожа на литерал одноимённого типа данных в языке Javascript.",
             "isCompleted": false,
             "createDate": 1604348731,
             "color": 1
@@ -19,7 +17,6 @@
         {
             "id": 2,
             "title": "first todo3",
-            "body": "33Строка очень похожа на литерал одноимённого типа данных в языке Javascript.",
             "isCompleted": false,
             "createDate": 1604348731,
             "color": 1
