@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { addTodoCreator } from '../../redux/todosReducer';
+import { addTodoCreator, addTodoThunk } from '../../redux/todosReducer';
 
 const Header = ({ addTodoCreator }) => {
   const [title, setTitle] = useState('');
 
   const addTodo = e => {
     if (e.key === 'Enter') {
-      addTodoCreator({
+      addTodoThunk({
         title: title,
         isCompleted: false,
         color: 0,

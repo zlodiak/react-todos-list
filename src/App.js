@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
-import { addTodoCreator, getTodos } from './redux/todosReducer';
+import { addTodoCreator, initTodosThunk } from './redux/todosReducer';
 
-function App(props) {
-  getTodos();
+function App() {
+  initTodosThunk();
 
   return (
     <>

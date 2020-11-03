@@ -19,16 +19,30 @@ export const addTodoCreator = todo => {
     return { type: 'ADD_TODO', payload: todo }
 }
 
-export const getTodos = () => {
-    return (dispatch) => {
+export const addTodoThunk = (todo) => {
+    debugger
+    return async dispatch => {
         debugger
-        return fetch(`${ API_URL }/todos`)
-            .then(response => response.json())
-            .then(todos => {
-                todos.forEach(todo => {
-                    addTodoCreator(todo);
-                });
-            });
+        await fetch(`${API_URL}/todos`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(todo)
+        });
+        dispatch(addTodoCreator(todo));
+    }
+}
+
+export const initTodosThunk = () => {
+    debugger
+    return async dispatch => {
+        debugger
+        const response = await fetch(`${API_URL}/todos`);
+        const todos = await response.json();
+        todos.forEach(todo => {
+            dispatch(addTodoCreator(todo));
+        });
     }
 }
 
