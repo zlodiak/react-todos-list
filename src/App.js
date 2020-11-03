@@ -3,21 +3,10 @@ import { connect } from 'react-redux';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
-import { addTodoCreator } from './redux/todosReducer';
-import { getTodos } from './API';
+import { addTodoCreator, getTodos } from './redux/todosReducer';
 
 function App(props) {
-  function initStore() {
-    if(props.todos.length) { return; }
-    getTodos
-      .then(todos => {
-        console.log(todos);
-        todos.forEach(todo => {
-          props.addTodoCreator(todo);
-        });
-      });
-  }
-  initStore();
+  getTodos();
 
   return (
     <>
