@@ -3,38 +3,28 @@ import { connect } from 'react-redux';
 
 import { addTodoCreator } from '../../redux/todosReducer';
 
-function Header(props) {
+const Header = ({ addTodoCreator }) => {
   const [title, setTitle] = useState('');
-  const titleRef = React.createRef();
-  const keyCodeEnter = 13;
 
-  useEffect(() => {
-    titleRef.current.addEventListener('keyup', addTodo);
-    return () => titleRef.current.removeEventListener('keyup', addTodo);
-  }, [])
-
-  function addTodo(e) {
-    console.log(title)
-    if(e.keyCode === keyCodeEnter) {
-      props.addTodoCreator({
+  const addTodo = e => {
+    if (e.key === 'Enter') {
+      addTodoCreator({
         title: title,
         isCompleted: false,
         color: 0,
       });
     }
-  }
+  };
 
   return (
-    <>
-      <input 
-        type="text" 
-        value={ title } 
-        onChange={ e => setTitle(e.target.value) } 
-        ref={ titleRef }
-      />
-    </>
+    <input
+      type="text"
+      value={ title }
+      onChange={ (e) => setTitle(e.target.value) }
+      onKeyUp={ addTodo }
+    />
   );
-}
+};
 
 const mapStateToProps = state => {
   return {
