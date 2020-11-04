@@ -17,6 +17,7 @@ export function addTodo(todo) {
 }
 
 export function editTodo(todo) {
+    console.log(todo)
     return fetch(`${ API_URL }/todos/${ todo.id }`, {
         method: 'PUT',
         headers: {

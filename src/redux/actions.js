@@ -1,4 +1,11 @@
-import { getTodos, addTodo, editTodo, deleteTodo, getHeader, editHeader } from '../API';
+import { 
+    getTodos, 
+    addTodo, 
+    editTodo, 
+    deleteTodo, 
+    getHeader, 
+    editHeader 
+} from '../API';
 
 export const addTodoCreator = todo => {
     return { type: 'ADD_TODO', payload: todo }
@@ -19,22 +26,30 @@ export const editHeaderCreator = header => {
 
 export const editTodoThunk = (todo) => {
     return async dispatch => {
-        await editTodo(todo);
-        dispatch(editTodoCreator(todo));
+        const result = await editTodo(todo);
+        if(result.ok) {
+            dispatch(editTodoCreator(todo));
+        }
     }
 }
 
 export const addTodoThunk = (todo) => {
     return async dispatch => {
-        await addTodo(todo);
-        dispatch(addTodoCreator(todo));
+        const result = await addTodo(todo);
+        const todoWithId = await result.json();
+        console.log(todoWithId)
+        if(todoWithId) {
+            dispatch(addTodoCreator(todoWithId));
+        }
     }
 }
 
 export const deleteTodoThunk = (id) => {
     return async dispatch => {
-        await deleteTodo(id);
-        dispatch(deleteTodoCreator(id));
+        const result = await deleteTodo(id);
+        if(result.ok) {
+            dispatch(deleteTodoCreator(id));
+        }
     }
 }
 
@@ -50,14 +65,14 @@ export const initTodosThunk = () => {
 export const initHeaderThunk = () => {
     return async dispatch => {
         const header = await getHeader;
-        console.log(header)
         dispatch(editHeaderCreator(header));
     }
 }
 
 export const editHeaderThunk = (header) => {
     return async dispatch => {
-        await editHeader(header);
+        // await editHeader(header);
+        // if(!header) { return; }
         // dispatch(editHeaderCreator(header));
     }
 }
