@@ -24,17 +24,16 @@ const Header = (props) => {
   };
 
   function toggleSelection() {
-    const toggled = { ...header };
+    const toggled = JSON.parse(JSON.stringify(header));
     toggled[0].isSelectAll = !toggled[0].isSelectAll;
-    editHeaderThunk(toggled[0]);
+    editHeaderThunk(toggled);
   }
 
   return (
     <>
-      { header && header[0] && header[0].isSelectAll.toString() }
       <input 
         type="checkbox" 
-        checked={ false } 
+        checked={ header && header[0] && header[0].isSelectAll } 
         onChange={ toggleSelection }
       />
       <input

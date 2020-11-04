@@ -39,6 +39,6 @@ export function editHeader(header) {
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(header)
+        body: JSON.stringify(header[0])
     });
 }

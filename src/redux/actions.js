@@ -71,8 +71,9 @@ export const initHeaderThunk = () => {
 
 export const editHeaderThunk = (header) => {
     return async dispatch => {
-        // await editHeader(header);
-        // if(!header) { return; }
-        // dispatch(editHeaderCreator(header));
+        const result = await editHeader(header);
+        if(result.ok) {
+            dispatch(editHeaderCreator(header));
+        }
     }
 }
