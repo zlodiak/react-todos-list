@@ -10,22 +10,15 @@
     {
       "id": 1,
       "title": "first todo2",
-      "isCompleted": false,
+      "isCompleted": true,
       "createDate": 1604348731,
       "color": 1
-    },
+    }
+  ],
+  "header": [
     {
-      "id": 2,
-      "title": "first todo3",
-      "isCompleted": false,
-      "createDate": 1604348731,
-      "color": 1
-    },
-    {
-      "title": "222",
-      "isCompleted": false,
-      "color": 0,
-      "id": 7
+      "id": 0,
+      "isSelectAll": true
     }
   ]
 }

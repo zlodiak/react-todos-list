@@ -1,4 +1,4 @@
-import { getTodos, addTodo, editTodo, deleteTodo } from '../API';
+import { getTodos, addTodo, editTodo, deleteTodo, getHeader, editHeader } from '../API';
 
 export const addTodoCreator = todo => {
     return { type: 'ADD_TODO', payload: todo }
@@ -11,6 +11,11 @@ export const editTodoCreator = todo => {
 export const deleteTodoCreator = id => {
     return { type: 'DELETE_TODO', payload: id }
 }
+
+export const editHeaderCreator = header => {
+    return { type: 'EDIT_HEADER', payload: header }
+}
+
 
 export const editTodoThunk = (todo) => {
     return async dispatch => {
@@ -39,5 +44,20 @@ export const initTodosThunk = () => {
         todos.forEach(todo => {
             dispatch(addTodoCreator(todo));
         });
+    }
+}
+
+export const initHeaderThunk = () => {
+    return async dispatch => {
+        const header = await getHeader;
+        console.log(header)
+        dispatch(editHeaderCreator(header));
+    }
+}
+
+export const editHeaderThunk = (header) => {
+    return async dispatch => {
+        await editHeader(header);
+        // dispatch(editHeaderCreator(header));
     }
 }

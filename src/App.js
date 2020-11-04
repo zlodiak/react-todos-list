@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
-import { initTodosThunk } from './redux/actions';
+import { initTodosThunk, initHeaderThunk } from './redux/actions';
 
 function App(props) {
   useEffect(() => {
     props.initTodosThunk();
+    props.initHeaderThunk();
   }, []);
 
   return (
@@ -28,10 +29,4 @@ function App(props) {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    todos: state.todosReducer.todos
-  }
-}
-
-export default connect(mapStateToProps, { initTodosThunk })(App);
+export default connect(null, { initTodosThunk, initHeaderThunk })(App);
