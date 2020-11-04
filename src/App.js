@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
-import { initTodosThunk } from './redux/todosReducer';
+import { initTodosThunk } from './redux/actions';
 
 function App(props) {
   useEffect(() => {

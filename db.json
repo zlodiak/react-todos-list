@@ -3,47 +3,29 @@
     {
       "id": 0,
       "title": "first todo1",
-      "isCompleted": false,
+      "isCompleted": true,
       "createDate": 1604348731,
       "color": 0
     },
     {
       "id": 1,
       "title": "first todo2",
-      "isCompleted": true,
+      "isCompleted": false,
       "createDate": 1604348731,
       "color": 1
     },
     {
       "id": 2,
       "title": "first todo3",
-      "isCompleted": true,
+      "isCompleted": false,
       "createDate": 1604348731,
       "color": 1
     },
     {
-      "title": "h",
+      "title": "222",
       "isCompleted": false,
       "color": 0,
-      "id": 3
-    },
-    {
-      "title": "ddd",
-      "isCompleted": false,
-      "color": 0,
-      "id": 4
-    },
-    {
-      "title": "dd",
-      "isCompleted": false,
-      "color": 0,
-      "id": 5
-    },
-    {
-      "title": "ddsd",
-      "isCompleted": false,
-      "color": 0,
-      "id": 6
+      "id": 7
     }
   ]
 }

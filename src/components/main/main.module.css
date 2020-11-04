@@ -1,0 +1,18 @@
+.checked {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.delete {
+    color: red;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { addTodoThunk } from '../../redux/todosReducer';
+import { addTodoThunk } from '../../redux/actions';
 
 const Header = ({ addTodoThunk }) => {
   const [title, setTitle] = useState('');

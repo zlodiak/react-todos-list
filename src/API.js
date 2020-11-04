@@ -22,3 +22,9 @@ export function editTodo(todo) {
         body: JSON.stringify(todo)
     });
 }
+
+export function deleteTodo(id) {
+    return fetch(`${ API_URL }/todos/${ id }`, {
+        method: 'DELETE',
+    });
+}
