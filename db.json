@@ -1,26 +1,25 @@
 {
-    "todos": [
-        {
-            "id": 0,
-            "title": "first todo1",
-            "isCompleted": false,
-            "createDate": 1604348731,
-            "color": 0
-        },
-        {
-            "id": 1,
-            "title": "first todo2",
-            "isCompleted": false,
-            "createDate": 1604348731,
-            "color": 1
-        },
-        {
-            "id": 2,
-            "title": "first todo3",
-            "isCompleted": false,
-            "createDate": 1604348731,
-            "color": 1
-        }
-    ]
+  "todos": [
+    {
+      "id": 0,
+      "title": "first todo1",
+      "isCompleted": false,
+      "createDate": 1604348731,
+      "color": 0
+    },
+    {
+      "id": 1,
+      "title": "first todo2",
+      "isCompleted": false,
+      "createDate": 1604348731,
+      "color": 1
+    },
+    {
+      "id": 2,
+      "title": "first todo3",
+      "isCompleted": false,
+      "createDate": 1604348731,
+      "color": 1
+    }
+  ]
 }
-  

@@ -20,9 +20,7 @@ export const addTodoCreator = todo => {
 }
 
 export const addTodoThunk = (todo) => {
-    debugger
     return async dispatch => {
-        debugger
         await fetch(`${API_URL}/todos`, {
             method: 'POST',
             headers: {
@@ -35,9 +33,7 @@ export const addTodoThunk = (todo) => {
 }
 
 export const initTodosThunk = () => {
-    debugger
     return async dispatch => {
-        debugger
         const response = await fetch(`${API_URL}/todos`);
         const todos = await response.json();
         todos.forEach(todo => {

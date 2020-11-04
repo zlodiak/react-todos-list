@@ -1,12 +1,15 @@
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
-import { addTodoCreator, initTodosThunk } from './redux/todosReducer';
+import { initTodosThunk } from './redux/todosReducer';
 
-function App() {
-  initTodosThunk();
+function App(props) {
+  useEffect(() => {
+    props.initTodosThunk();
+  }, []);
 
   return (
     <>
@@ -31,4 +34,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { addTodoCreator })(App);
+export default connect(mapStateToProps, { initTodosThunk })(App);

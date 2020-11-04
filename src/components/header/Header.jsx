@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { addTodoCreator, addTodoThunk } from '../../redux/todosReducer';
+import { addTodoThunk } from '../../redux/todosReducer';
 
-const Header = ({ addTodoCreator }) => {
+const Header = ({ addTodoThunk }) => {
   const [title, setTitle] = useState('');
 
   const addTodo = e => {
@@ -32,4 +32,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { addTodoCreator })(Header);
+export default connect(mapStateToProps, { addTodoThunk })(Header);
