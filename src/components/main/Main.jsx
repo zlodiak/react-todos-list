@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { editTodoThunk } from '../../redux/todosReducer';
 
 function Main(props) {
   function renderTodosList() {
@@ -7,12 +8,18 @@ function Main(props) {
       return (
         <ul key={ i }>
           <li>
-            <input type="checkbox"/>
+            <input type="checkbox" onChange={ e => toggleTodoStatus(todo) }/>
             <span>{ todo.title }</span>
           </li>
         </ul>
       );
     });
+  }
+
+  function toggleTodoStatus(todo) {
+    const toggledTodo = { ...todo };
+    toggledTodo.isCompleted = !toggledTodo.isCompleted;
+    props.editTodoThunk(toggledTodo);
   }
 
   return (
@@ -28,4 +35,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(Main);
+export default connect(mapStateToProps, { editTodoThunk })(Main);
