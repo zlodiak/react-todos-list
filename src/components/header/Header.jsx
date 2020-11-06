@@ -7,7 +7,7 @@ const Header = (props) => {
   const [title, setTitle] = useState('');
 
   const addTodo = e => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && title.trim()) {
       addTodoThunk(title, () => setTitle(''));
     }
   };

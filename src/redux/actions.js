@@ -34,6 +34,7 @@ export const editTodoThunk = (todo) => {
 }
 
 export const addTodoThunk = (title, clearFieldCB) => {
+    if(!title.trim()) { return null; }
     return async dispatch => {
         const result = await addTodo({
             title: title,
