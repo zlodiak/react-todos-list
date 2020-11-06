@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-
 import { addTodoThunk, editHeaderThunk } from '../../redux/actions';
 
 const Header = (props) => {
   const { addTodoThunk, editHeaderThunk, header } = props;
-
   const [title, setTitle] = useState('');
 
   const addTodo = e => {
@@ -14,18 +12,12 @@ const Header = (props) => {
     }
   };
 
-  function toggleSelection() {
-    const toggled = JSON.parse(JSON.stringify(header));
-    toggled[0].isSelectAll = !toggled[0].isSelectAll;
-    editHeaderThunk(toggled);
-  }
-
   return (
     <>
       <input 
         type="checkbox" 
         checked={ header && header[0] && header[0].isSelectAll } 
-        onChange={ toggleSelection }
+        onChange={ () => editHeaderThunk(header) }
       />
       <input
         type="text"
@@ -39,7 +31,6 @@ const Header = (props) => {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todosReducer.todos,
     header: state.headerReducer.header,
   }
 }

@@ -41,7 +41,6 @@ export const addTodoThunk = (title, clearFieldCB) => {
             color: 0,
         });
         const todoWithId = await result.json();
-        console.log(todoWithId)
         if(todoWithId) {
             dispatch(addTodoCreator(todoWithId));
             clearFieldCB();
@@ -75,10 +74,13 @@ export const initHeaderThunk = () => {
 }
 
 export const editHeaderThunk = (header) => {
+    const headerCopy = JSON.parse(JSON.stringify(header));
+    headerCopy[0].isSelectAll = !headerCopy[0].isSelectAll;
+
     return async dispatch => {
-        const result = await editHeader(header);
+        const result = await editHeader(headerCopy);
         if(result.ok) {
-            dispatch(editHeaderCreator(header));
+            dispatch(editHeaderCreator(headerCopy));
         }
     }
 }
