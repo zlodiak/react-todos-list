@@ -33,13 +33,18 @@ export const editTodoThunk = (todo) => {
     }
 }
 
-export const addTodoThunk = (todo) => {
+export const addTodoThunk = (title, clearFieldCB) => {
     return async dispatch => {
-        const result = await addTodo(todo);
+        const result = await addTodo({
+            title: title,
+            isCompleted: false,
+            color: 0,
+        });
         const todoWithId = await result.json();
         console.log(todoWithId)
         if(todoWithId) {
             dispatch(addTodoCreator(todoWithId));
+            clearFieldCB();
         }
     }
 }

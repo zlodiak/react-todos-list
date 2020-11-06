@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { addTodoThunk, editHeaderThunk } from '../../redux/actions';
@@ -7,19 +7,10 @@ const Header = (props) => {
   const { addTodoThunk, editHeaderThunk, header } = props;
 
   const [title, setTitle] = useState('');
-  console.log(header)
-
-  useEffect(() => {
-    console.log(12)
-  }, [header]);
 
   const addTodo = e => {
     if (e.key === 'Enter') {
-      addTodoThunk({
-        title: title,
-        isCompleted: false,
-        color: 0,
-      });
+      addTodoThunk(title, () => setTitle(''));
     }
   };
 
