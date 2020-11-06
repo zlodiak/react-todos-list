@@ -25,16 +25,18 @@ export const editHeaderCreator = header => {
 
 
 export const editTodoThunk = (todo) => {
+    const todoCopy = { ...todo };
+    todoCopy.isCompleted = !todoCopy.isCompleted;
+
     return async dispatch => {
-        const result = await editTodo(todo);
+        const result = await editTodo(todoCopy);
         if(result.ok) {
-            dispatch(editTodoCreator(todo));
+            dispatch(editTodoCreator(todoCopy));
         }
     }
 }
 
 export const addTodoThunk = (title, clearFieldCB) => {
-    if(!title.trim()) { return null; }
     return async dispatch => {
         const result = await addTodo({
             title: title,
@@ -80,8 +82,28 @@ export const editHeaderThunk = (header) => {
 
     return async dispatch => {
         const result = await editHeader(headerCopy);
-        if(result.ok) {
-            dispatch(editHeaderCreator(headerCopy));
+        if(!result.ok) { return; }
+        dispatch(editHeaderCreator(headerCopy));
+        if(headerCopy[0].isSelectAll) {
+            setAllIsCompleted(true, dispatch);
+        } else {
+            setAllIsCompleted(false, dispatch);
         }
+    }
+}
+
+async function setAllIsCompleted(value, dispatch) {
+    const todos = await getTodos;
+    todos.forEach(todo => {
+        setIsCompleted(todo, value, dispatch);
+    });
+}
+
+async function setIsCompleted(todo, value, dispatch) {
+    const todoCopy = todo;
+    todoCopy.isCompleted = value;
+    const result = await editTodo(todoCopy);
+    if(result.ok) {
+        dispatch(editTodoCreator(todoCopy));
     }
 }

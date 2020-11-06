@@ -12,7 +12,7 @@ function Main(props) {
           <li>
             <input 
               type="checkbox" 
-              onChange={ e => toggleTodoStatus(todo) } 
+              onChange={ e => props.editTodoThunk(todo) } 
               checked={ todo.isCompleted }
             />
             <span className={ todo.isCompleted ? styles.checked : null }>{ todo.title }</span>
@@ -21,12 +21,6 @@ function Main(props) {
         </ul>
       );
     });
-  }
-
-  function toggleTodoStatus(todo) {
-    const toggledTodo = { ...todo };
-    toggledTodo.isCompleted = !toggledTodo.isCompleted;
-    props.editTodoThunk(toggledTodo);
   }
 
   return (
