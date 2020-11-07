@@ -5,6 +5,7 @@ import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
 import { initTodosThunk, initHeaderThunk } from './redux/actions';
+import './App.css';
 
 function App(props) {
   useEffect(() => {
@@ -13,19 +14,19 @@ function App(props) {
   }, []);
 
   return (
-    <>
-      <header>
+    <div class="body">
+      <header class="header">
         <Header/>
       </header>
 
-      <main>
+      <main class="main">
         <Main/>
       </main>
 
-      <footer>
+      <footer class="footer">
         <Footer/>
       </footer>
-    </>
+    </div>
   );
 }
 

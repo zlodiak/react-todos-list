@@ -14,14 +14,8 @@
       "id": 1
     },
     {
-      "title": "sd",
-      "isCompleted": true,
-      "color": 0,
-      "id": 2
-    },
-    {
       "title": "sdfsdf",
-      "isCompleted": false,
+      "isCompleted": true,
       "color": 0,
       "id": 3
     }
