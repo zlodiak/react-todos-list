@@ -6,6 +6,7 @@ import {
     getHeader,  
     getMain,
     editMain,
+    editHeader,
 } from '../API';
 
 export const addTodoCreator = todo => {
@@ -98,5 +99,27 @@ export const initMainThunk = () => {
     return async dispatch => {
         const main = await getMain;
         dispatch(editMainCreator(main));
+    }
+}
+
+export const editHeaderThunk = (header, todos) => {
+    const headerCopy = JSON.parse(JSON.stringify(header));
+    headerCopy[0].isSelectAll = !headerCopy[0].isSelectAll;
+
+    return async dispatch => {
+        const result = await editHeader(headerCopy);
+        if(!result.ok) { return; }
+        dispatch(editHeaderCreator(headerCopy));
+
+        todos.forEach(todo => {
+            const todoCopy = { ...todo };
+            todoCopy.isCompleted = headerCopy[0].isSelectAll;
+
+            editTodo(todoCopy).then(result => {
+                if(result.ok) {
+                    dispatch(editTodoCreator(todoCopy));
+                }
+            })
+        });
     }
 }

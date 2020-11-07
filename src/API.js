@@ -48,8 +48,6 @@ export function editHeader(header) {
 }
 
 export function editMain(main) {
-    console.log(main)
-    debugger
     return fetch(`${ API_URL }/main/0`, {
         method: 'PUT',
         headers: {
