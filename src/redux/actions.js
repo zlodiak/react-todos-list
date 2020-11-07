@@ -75,35 +75,3 @@ export const initHeaderThunk = () => {
         dispatch(editHeaderCreator(header));
     }
 }
-
-export const editHeaderThunk = (header) => {
-    const headerCopy = JSON.parse(JSON.stringify(header));
-    headerCopy[0].isSelectAll = !headerCopy[0].isSelectAll;
-
-    return async dispatch => {
-        const result = await editHeader(headerCopy);
-        if(!result.ok) { return; }
-        dispatch(editHeaderCreator(headerCopy));
-        if(headerCopy[0].isSelectAll) {
-            setAllIsCompleted(true, dispatch);
-        } else {
-            setAllIsCompleted(false, dispatch);
-        }
-    }
-}
-
-async function setAllIsCompleted(value, dispatch) {
-    const todos = await getTodos;
-    todos.forEach(todo => {
-        setIsCompleted(todo, value, dispatch);
-    });
-}
-
-async function setIsCompleted(todo, value, dispatch) {
-    const todoCopy = todo;
-    todoCopy.isCompleted = value;
-    const result = await editTodo(todoCopy);
-    if(result.ok) {
-        dispatch(editTodoCreator(todoCopy));
-    }
-}

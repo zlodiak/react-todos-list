@@ -3,21 +3,33 @@
     {
       "id": 0,
       "title": "first todo1",
-      "isCompleted": false,
+      "isCompleted": true,
       "createDate": 1604348731,
       "color": 0
     },
     {
-      "title": "hghj",
-      "isCompleted": false,
+      "title": "df",
+      "isCompleted": true,
+      "color": 0,
+      "id": 1
+    },
+    {
+      "title": "sd",
+      "isCompleted": true,
       "color": 0,
       "id": 2
+    },
+    {
+      "title": "sdfsdf",
+      "isCompleted": false,
+      "color": 0,
+      "id": 3
     }
   ],
   "header": [
     {
       "id": 0,
-      "isSelectAll": false
+      "isSelectAll": true
     }
   ]
 }
