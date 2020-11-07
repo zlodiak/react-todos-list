@@ -25,6 +25,7 @@ const todosReducer = function todosReducer(state = { todos: [] }, action) {
                 if(todo.id !== action.payload) {
                     return todo;
                 }
+                return null;
             });
             state = {
                 ...state,

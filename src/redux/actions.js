@@ -3,8 +3,9 @@ import {
     addTodo, 
     editTodo, 
     deleteTodo, 
-    getHeader, 
-    editHeader 
+    getHeader,  
+    getMain,
+    editMain,
 } from '../API';
 
 export const addTodoCreator = todo => {
@@ -21,6 +22,10 @@ export const deleteTodoCreator = id => {
 
 export const editHeaderCreator = header => {
     return { type: 'EDIT_HEADER', payload: header }
+}
+
+export const editMainCreator = main => {
+    return { type: 'EDIT_MAIN', payload: main }
 }
 
 
@@ -60,6 +65,19 @@ export const deleteTodoThunk = (id) => {
     }
 }
 
+export const editMainThunk = main => {
+    // debugger
+    console.log(main)
+    return async dispatch => {
+        // debugger
+        const result = await editMain(main);
+        // debugger
+        if(result.ok) { 
+            dispatch(editMainCreator(main));
+        }
+    }
+}
+
 export const initTodosThunk = () => {
     return async dispatch => {
         const todos = await getTodos;
@@ -73,5 +91,12 @@ export const initHeaderThunk = () => {
     return async dispatch => {
         const header = await getHeader;
         dispatch(editHeaderCreator(header));
+    }
+}
+
+export const initMainThunk = () => {
+    return async dispatch => {
+        const main = await getMain;
+        dispatch(editMainCreator(main));
     }
 }

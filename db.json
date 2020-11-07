@@ -8,16 +8,52 @@
       "color": 0
     },
     {
-      "title": "dsfsg",
+      "title": "hjg",
       "isCompleted": false,
       "color": 0,
-      "id": 1
+      "id": 3
+    },
+    {
+      "title": "gg",
+      "isCompleted": false,
+      "color": 0,
+      "id": 4
+    },
+    {
+      "title": "hgjgh",
+      "isCompleted": false,
+      "color": 0,
+      "id": 5
+    },
+    {
+      "title": "g",
+      "isCompleted": false,
+      "color": 0,
+      "id": 6
+    },
+    {
+      "title": "j",
+      "isCompleted": false,
+      "color": 0,
+      "id": 7
+    },
+    {
+      "title": "kg",
+      "isCompleted": false,
+      "color": 0,
+      "id": 9
     }
   ],
   "header": [
     {
       "id": 0,
       "isSelectAll": true
+    }
+  ],
+  "main": [
+    {
+      "id": 0,
+      "displayMode": "all"
     }
   ]
 }

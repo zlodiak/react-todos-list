@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { deleteTodoThunk } from '../../redux/actions';
+import { deleteTodoThunk, editMainThunk } from '../../redux/actions';
 
 function Footer(props) {
   function deleteCompletedTodos() {
@@ -12,15 +12,15 @@ function Footer(props) {
 
   return (
     <>
-      <div class="cell left">{ props.notCompletedTodos.length } item left</div>
+      <div className="cell left">{ props.notCompletedTodos.length } item left</div>
 
-      <div class="cell center">
+      <div className="cell center">
         <button id="showAll">All</button>
         <button id="showAlctive">Active</button>
-        <button id="showCompleted">Completed</button>
+        <button id="showCompleted" onClick={ () => editMainThunk({ id: 0, displayMode: 'completed' }) }>Completed</button>
       </div>
 
-      <div class="cell right">
+      <div className="cell right">
         <button id="clearCompleted" onClick={ deleteCompletedTodos }>clear completed</button>
       </div>
     </>
@@ -34,4 +34,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { deleteTodoThunk })(Footer);
+export default connect(mapStateToProps, { deleteTodoThunk, editMainThunk })(Footer);

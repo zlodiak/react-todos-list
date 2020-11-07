@@ -1,5 +1,9 @@
 import { API_URL } from './config';
 
+
+export const getMain = fetch(`${ API_URL }/main`)
+    .then(response => response.json());
+
 export const getHeader = fetch(`${ API_URL }/header`)
     .then(response => response.json());
 
@@ -40,5 +44,17 @@ export function editHeader(header) {
           'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(header[0])
+    });
+}
+
+export function editMain(main) {
+    console.log(main)
+    debugger
+    return fetch(`${ API_URL }/main/0`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(main[0])
     });
 }

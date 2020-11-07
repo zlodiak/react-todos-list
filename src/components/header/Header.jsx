@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addTodoThunk } from '../../redux/actions';
 
 const Header = (props) => {
-  const { addTodoThunk, header } = props;
+  const { addTodoThunk } = props;
   const [title, setTitle] = useState('');
 
   const addTodo = e => {
