@@ -12,13 +12,20 @@ const Header = (props) => {
     }
   };
 
-  return (
-    <>
+  function renderGeneralCheckbox() {
+    if(todos && !todos.length) { return null; }
+    return (
       <input 
         type="checkbox" 
         checked={ header && header[0] && header[0].isSelectAll } 
         onChange={ () => editHeaderThunk(header, todos) }
-      />    
+      />  
+    );
+  }
+
+  return (
+    <>
+      { renderGeneralCheckbox() }
       <input
         type="text"
         value={ title }

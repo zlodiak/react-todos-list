@@ -67,12 +67,8 @@ export const deleteTodoThunk = (id) => {
 }
 
 export const editMainThunk = main => {
-    // debugger
-    console.log(main)
     return async dispatch => {
-        // debugger
         const result = await editMain(main);
-        // debugger
         if(result.ok) { 
             dispatch(editMainCreator(main));
         }

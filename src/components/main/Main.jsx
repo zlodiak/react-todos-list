@@ -9,18 +9,18 @@ function Main(props) {
 
   useEffect(() => {
     if(props.main[0]) {
-      if(props.main[0].displayMode === 'completed') {
-        const todos = props.todos.filter(todo => todo.isCompleted);
-        setTodos(todos);
-      } else if(props.main[0].displayMode === 'active') {
-        const todos = props.todos.filter(todo => !todo.isCompleted);
-        setTodos(todos);
-      } else if(props.main[0].displayMode === 'all') {
-        const todos = props.todos;
-        setTodos(todos);
+      switch(props.main[0].displayMode) {
+        case 'active':
+          setTodos(props.todosActive);
+          break;
+        case 'completed':
+          setTodos(props.todosCompleted);
+          break;
+        default:
+          setTodos(props.todos);
       }
     }
-  }, [props.todos]);
+  }, [props]);
 
   function renderTodosList() {
     return todos.map((todo, i) => {
@@ -34,7 +34,6 @@ function Main(props) {
             />
             <span className={ todo.isCompleted ? styles.checked : null }>{ todo.title }</span>
             <span className={ styles.delete } onClick={ e => props.deleteTodoThunk(todo.id) }>X</span>
-            { props && props.main && props.main[0].displayMode }
           </li>
         </ul>
       );
@@ -43,7 +42,8 @@ function Main(props) {
 
   return (
     <>
-      { todos && todos.length && renderTodosList() }
+      { (() => { if(todos && todos.length) { return renderTodosList(); } })() }
+      { todos && !todos.length && 'No todos' }
     </>
   );
 }
@@ -51,6 +51,8 @@ function Main(props) {
 const mapStateToProps = state => {
   return {
     todos: state.todosReducer.todos,
+    todosActive: state.todosReducer.todos.filter(todo => !todo.isCompleted),
+    todosCompleted: state.todosReducer.todos.filter(todo => todo.isCompleted),
     main: state.mainReducer.main,
   }
 }

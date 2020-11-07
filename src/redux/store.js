@@ -13,7 +13,7 @@ const store = createStore(combineReducers({
 export default store;
 
 store.subscribe(v => {
-    console.log(store.getState())
+    // console.log(store.getState())
 });
 
 window.state = store.getState
