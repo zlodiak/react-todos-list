@@ -40,7 +40,7 @@
   "main": [
     {
       "id": 0,
-      "displayMode": "all"
+      "displayMode": "active"
     }
   ]
 }

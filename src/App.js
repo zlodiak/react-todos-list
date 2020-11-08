@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import Footer from './components/footer/Footer';
 import { initTodosThunk, initHeaderThunk, initMainThunk } from './redux/actions';
-import { createUseStyles, ThemeProvider } from 'react-jss';
+import { createUseStyles, ThemeProvider, useTheme } from 'react-jss';
 
 const useStyles = createUseStyles({
   body: {
@@ -17,15 +17,29 @@ const useStyles = createUseStyles({
     justifyContent: 'space-between',
     background: theme => theme.background,
   },
+  themeChcker: {
+    position: 'fixed',
+    top: 0,
+    right: 0,
+    border: '1px solid red',
+    padding: '10px',
+  }
 });
 
-const theme = {
+const theme1 = {
   background: "#f7df1e",
   color: "#24292e"
 };
 
+const theme2 = {
+  background: "maroon",
+  color: "#fff"
+};
+
 function App(props) {
-  const classes = useStyles(theme);
+  const [contrast, setContrast] = useState(false);
+  const classes = useStyles(contrast ? theme2 : theme1);
+
   useEffect(() => {
     props.initTodosThunk();
     props.initHeaderThunk();
@@ -33,7 +47,7 @@ function App(props) {
   });
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={contrast ? theme2 : theme1}>
       <div className={ classes.body }>
         <header>
           <Header/>
@@ -46,6 +60,10 @@ function App(props) {
         <footer className={ classes.footer }>
           <Footer/>
         </footer>
+      </div>
+
+      <div className={ classes.themeChcker }>
+        <input type="checkbox" value={ contrast } onChange={ () => setContrast(!contrast) }/> Включить контрастную версию
       </div>
     </ThemeProvider>
   );
