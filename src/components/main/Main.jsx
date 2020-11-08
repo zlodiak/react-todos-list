@@ -1,11 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { createUseStyles, useTheme } from 'react-jss';
+
 import { editTodoThunk, deleteTodoThunk } from '../../redux/actions';
 
-import styles from './main.module.css';
+const useStyles = createUseStyles({
+  'todosList': {
+    padding: 0,
+    '& li': {
+      'listStyleType': 'none',
+    },
+    background: theme => theme.background,
+  },
+  delete: {
+    color: 'red',
+    'paddingLeft': '20px',
+    cursor: 'pointer',
+  },
+  checked: {
+    color: 'gray',
+    'text-decoration': 'line-through',
+  },
+});
 
 function Main(props) {
   const [todos, setTodos] = useState();
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
   useEffect(() => {
     if(props.main[0]) {
@@ -25,15 +46,15 @@ function Main(props) {
   function renderTodosList() {
     return todos.map((todo, i) => {
       return (
-        <ul key={ i }>
+        <ul key={ i } className={ classes.todosList }>
           <li>
             <input 
-              type="checkbox" 
+              type='checkbox' 
               onChange={ e => props.editTodoThunk(todo) } 
               checked={ todo.isCompleted }
             />
-            <span className={ todo.isCompleted ? styles.checked : null }>{ todo.title }</span>
-            <span className={ styles.delete } onClick={ e => props.deleteTodoThunk(todo.id) }>X</span>
+            <span className={ todo.isCompleted ? classes.checked : null }>{ todo.title }</span>
+            <span className={ classes.delete } onClick={ e => props.deleteTodoThunk(todo.id) }>X</span>
           </li>
         </ul>
       );

@@ -8,7 +8,7 @@
     },
     {
       "title": "d",
-      "isCompleted": false,
+      "isCompleted": true,
       "color": 0,
       "id": 2
     },
@@ -20,15 +20,9 @@
     },
     {
       "title": "fdgdf",
-      "isCompleted": true,
-      "color": 0,
-      "id": 6
-    },
-    {
-      "title": "g",
       "isCompleted": false,
       "color": 0,
-      "id": 7
+      "id": 6
     },
     {
       "title": "dfg",
@@ -46,7 +40,7 @@
   "main": [
     {
       "id": 0,
-      "displayMode": "active"
+      "displayMode": "all"
     }
   ]
 }
